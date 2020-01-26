@@ -35,15 +35,11 @@ public class ExcecoesPersonalizadas {
 			System.out.print("Data do check-out: ");
 			checkOut = sdf.parse(sc.next());
 			
-			Date agora = new Date();
-			if(checkIn.before(agora)||checkOut.before(agora)) {
-				System.out.println("Erro na reserva!\nAs datas da reserva devem ser a posterior!");
+			String erro = reservas.atualizarDatas(checkIn, checkOut);
+			if (erro != null){
+				System.out.println("Erro na reserva!\n" + erro);
 			}
-			else if(!checkOut.after(checkIn)) {
-				System.out.println("Erro nas datas! \nA data do check-out deve ser depois da data do chck.in");
-			}
-			else {
-				reservas.atualizarDatas(checkIn, checkOut);
+			else{
 				System.out.println(reservas);
 			}
 			
